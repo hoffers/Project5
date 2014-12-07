@@ -1,0 +1,3 @@
+## Kosher Living in Toco Hills
+
+This project was created to fulfill project 5 of the Front-End Web Development Nanodegree. To open the application, simply open index.html in your favorite web browser, such as Google Chrome. You can browse for a location in the left-hand list. You can narrow the results in the list by using the search bar. Or you can just explore the points on the map. Selecting a point in the list or on the map will display some more information in the Selection Window on the bottom-left of the screen. If available, it will display the Street View from Google and any related Wikipedia articles.

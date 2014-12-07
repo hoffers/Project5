@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kosher Living in Toco Hills</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDpD8Y9k8csdeagJtpyuzC2v2rJDrf0q0"></script>
+</head>
+<body>
+	<div class="leftContainer col-md-3">
+		<div class="searchContainer">
+			<input type="text" placeholder="Search..." data-bind="value: searchQuery, valueUpdate:'afterkeydown'"></input>
+		</div>
+		<div class="listContainer">
+			<ul class="list" data-bind="foreach: points">
+				<li class="listItem" data-bind="click: pointSelected, visible: display">
+					<div class="itemName" data-bind="text: name"></div>
+					<div class="itemAddress" data-bind="text: address"></div>
+				</li>
+			</ul>
+		</div>
+		<div class="selectedDetails">
+			<div class="" data-bind="with: selection">
+				<div class="itemName" data-bind="text: name"></div>
+				<div class="itemAddress" data-bind="text: address"></div>
+				<div class="itemWiki" data-bind="visible: $root.wikiArticles().length > 0">
+					<p class="wikiHeading">Related Wikipedia Articles</p>
+					<ul class="wikiList" data-bind="foreach: $root.wikiArticles">
+						<li class="wikiArticle"><a data-bind="attr: { href: url }, text: name"></a></li>
+					</ul>
+				</div>
+				<div class="wikiError" data-bind="visible: $root.wikiError()">
+					<p class="wikiErrorMessage">Error Loading Related Wikipedia Articles</p>
+				</div>
+				<div class="streetViewDiv">
+					<img class="streetView" data-bind="attr: { src: $root.streetView }">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="map-canvas" class="col-md-9"></div>
+    <script src='js/libs/knockout-3.2.0.js'></script>
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

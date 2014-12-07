@@ -1,0 +1,71 @@
+.leftContainer {
+	height: 100%;
+	padding: 0;
+}
+.searchContainer {
+	padding: 0;
+	border: 1px solid #CCC;
+	height: 10%;
+	min-height: 30px;
+}
+.listContainer {
+	height: 45%;
+	overflow-y: auto;
+	border: 1px solid #CCC;
+}
+.list {
+	padding: 0;
+}
+.listItem {
+    list-style-type: none;
+    padding: 10px;
+    border-top: 1px solid #CCC;
+    cursor: pointer;
+}
+.listItem:first-child {
+    border-top: none;
+}
+.itemName {
+	font-weight: bold;
+}
+.selectedDetails {
+	height: 45%;
+	overflow-y: auto;
+	padding: 15px;
+	border: 1px solid #CCC;
+}
+html, body, #map-canvas {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+input {
+	width: 100%;
+	height: 100%;
+	font-size: 130%;
+}
+.streetViewDiv {
+	padding-top: 5px;
+}
+.itemWiki {
+	margin-top: 5px;
+}
+.wikiHeading {
+	text-decoration: underline;
+	margin-top: 5px;
+	margin-bottom: 0;
+}
+.wikiList {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.wikiArticle {
+	list-style-type: none;
+}
+.wikiErrorMessage {
+	font-style: italic;
+}
+.infowindow {
+	width: 125px;
+	font-weight: bold;
+}
