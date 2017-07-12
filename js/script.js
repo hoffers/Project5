@@ -51,11 +51,11 @@ function point(name, lat, long, address, icon, map) {
 				for (var i = 0; i < articleList.length; i++) {
 					articleStr = articleList[i];
 					viewModel.wikiArticles.push(new wikiArticle(articleStr));
-				};
+				}
 				clearTimeout(wikiRequestTimeout);
 			}
 		});
-	}
+	};
 	// Displays marker if point is displayed, otherwise hides it
 	this.updateMarker = function() {
 		if (this.display()) {
@@ -76,7 +76,7 @@ function wikiArticle(name) {
 // The View Model object
 function mapViewModel() {
 	var self = this;
-	
+
 	// Options for map
 	self.mapOptions = {
 		center: { lat: 33.8151359, lng: -84.3227593},
@@ -84,10 +84,10 @@ function mapViewModel() {
 		draggable: true,
 		disableDefaultUI: true
 	};
-	
+
 	// The actual Map
 	self.map = new google.maps.Map(document.getElementById('map-canvas'), self.mapOptions);
-	
+
 	// List of icons
 	self.icons = {
 		restaurant : "images/restaurant.png",
@@ -106,11 +106,11 @@ function mapViewModel() {
 		gas : "images/gas.png",
 		lodging : "images/lodging.png",
 		mail : "images/mail.png"
-	}
-    
+	};
+
     // The search query typed in by the user
     self.searchQuery = ko.observable("");
-	
+
 	// List of Points to be displayed on the map
     self.points = ko.observableArray([
         new point('Congregation Beth Jacob', 33.8159738, -84.3259048, '1855 Lavista Rd NE', self.icons.synagogue, self.map),
@@ -135,28 +135,30 @@ function mapViewModel() {
         new point('Elwyn John Wildlife Sanctuary', 33.8231168, -84.3259722, 'Elwyn John Wildlife Sanctuary', self.icons.tree, self.map),
         new point('Jiffy Lube', 33.8158747, -84.3352847, '2138 Briarcliff Rd NE', self.icons.mechanic, self.map),
         new point('Whole Foods Market', 33.815834, -84.3332098, '2111 Briarcliff Rd', self.icons.groceryStore, self.map)]);
-    
+
     // Sort points based on their names
-    self.points().sort(function(left, right) { return left.name == right.name ? 0 : (left.name < right.name ? -1 : 1) });
-    
-    // The selected Point. Start with "dummy" Point. 
+    self.points().sort(function(left, right) {
+      return left.name == right.name ? 0 : (left.name < right.name ? -1 : 1);
+    });
+
+    // The selected Point. Start with "dummy" Point.
     self.selection = ko.observable(new point('Select a location for more information.', 0, 0, ''));
-    
-    // The streetView url for selected Point	
+
+    // The streetView url for selected Point
     self.streetView = ko.computed(function() {
-    		if (self.selection().address != "") {
+    		if (self.selection().address !== "") {
     			return "https://maps.googleapis.com/maps/api/streetview?size=250x150&location=" + self.selection().name + " " + self.selection().address + " Atlanta, GA 30329";
     		} else {
     			return "";
     		}
     	});
-    
+
     // Stores related Wikipedia articles
     self.wikiArticles = ko.observableArray([]);
-    
+
     // Boolean if there is an error calling Wikipedia API or not
     self.wikiError = ko.observable(false);
-    
+
     // Updates all Points' display property based on user's search query
     self.updatePoints = function() {
     	$.each(self.points(), function(i, point) {
@@ -169,19 +171,19 @@ function mapViewModel() {
     		});
 		return true;
     };
-    
+
     // Whenever search query changes, update all points
     self.searchQuery.subscribe(function (newValue) {
 		self.updatePoints();
 	});
-	
+
 	// Close all info windows
 	self.closeInfoWindows = function() {
 		$.each(self.points(), function(i, point) {
 			point.infowindow.close();
 		});
-	}
-	
+	};
+
 	// Add event listener on click to each point
 	$.each(self.points(), function(i, point) {
 		google.maps.event.addListener(point.marker,'click',function() {
