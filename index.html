@@ -2,46 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kosher Living in Toco Hills</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDpD8Y9k8csdeagJtpyuzC2v2rJDrf0q0"></script>
 </head>
 <body>
-	<div class="leftContainer col-md-3">
-		<div class="searchContainer">
-			<input type="text" placeholder="Search..." data-bind="value: searchQuery, valueUpdate:'afterkeydown'"></input>
+	<div class="left-container col-sm-3">
+    <div class="toggle-btn" data-bind="click: toggleBtnClicked">
+      <span class="glyphicon glyphicon-align-justify" data-bind="visible: $root.showingMap()"></span>
+      <span class="glyphicon glyphicon-map-marker" data-bind="visible: !$root.showingMap()"></span>
+    </div>
+		<div class="search-container">
+			<input type="text" placeholder="Search..." data-bind="value: searchQuery, valueUpdate:'afterkeydown'">
 		</div>
-		<div class="listContainer">
+		<div class="list-container">
 			<ul class="list" data-bind="foreach: points">
-				<li class="listItem" data-bind="click: pointSelected, visible: display">
-					<div class="itemName" data-bind="text: name"></div>
-					<div class="itemAddress" data-bind="text: address"></div>
+				<li class="list-item" data-bind="click: itemSelected, visible: display, css: { selected: isSelected() }">
+					<div class="item-name" data-bind="text: name"></div>
+					<div class="item-address" data-bind="text: address"></div>
 				</li>
 			</ul>
 		</div>
-		<div class="selectedDetails">
+		<div class="selected-details">
 			<div class="" data-bind="with: selection">
-				<div class="itemName" data-bind="text: name"></div>
-				<div class="itemAddress" data-bind="text: address"></div>
-				<div class="itemWiki" data-bind="visible: $root.wikiArticles().length > 0">
-					<p class="wikiHeading">Related Wikipedia Articles</p>
-					<ul class="wikiList" data-bind="foreach: $root.wikiArticles">
-						<li class="wikiArticle"><a data-bind="attr: { href: url }, text: name"></a></li>
+				<div class="item-name" data-bind="text: name"></div>
+				<div class="item-address" data-bind="text: address"></div>
+				<div class="item-wiki" data-bind="visible: $root.wikiArticles().length > 0">
+					<p class="wiki-heading">Related Wikipedia Articles</p>
+					<ul class="wiki-list" data-bind="foreach: $root.wikiArticles">
+						<li class="wiki-article"><a data-bind="attr: { href: url }, text: name"></a></li>
 					</ul>
 				</div>
-				<div class="wikiError" data-bind="visible: $root.wikiError()">
-					<p class="wikiErrorMessage">Error Loading Related Wikipedia Articles</p>
+				<div class="wiki-error" data-bind="visible: $root.wikiError()">
+					<p class="wiki-error-message">Error Loading Related Wikipedia Articles</p>
 				</div>
-				<div class="streetViewDiv">
-					<img class="streetView" data-bind="attr: { src: $root.streetView }">
+				<div class="street-view-div">
+					<img class="street-view" data-bind="attr: { src: $root.streetView }">
 				</div>
 			</div>
 		</div>
 	</div>
-	<div id="map-canvas" class="col-md-9"></div>
+	<div id="map-canvas" class="col-sm-9"></div>
     <script src='js/libs/knockout-3.2.0.js'></script>
-    <script src="js/libs/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+      crossorigin="anonymous"></script>
+    <script src="js/points.js"></script>
     <script src="js/script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDpD8Y9k8csdeagJtpyuzC2v2rJDrf0q0&callback=initMap"
+      async defer onerror="mapError()"></script>
 </body>
 </html>

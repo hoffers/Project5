@@ -1,70 +1,113 @@
-.leftContainer {
+.left-container {
 	height: 100%;
 	padding: 0;
 }
-.searchContainer {
+
+.toggle-btn {
+	position: fixed;
+	right: 2vh;
+	top: 1vh;
+	font-size: 5vh;
+	z-index: 1;
+	border: solid 1px black;
+	width: 8vh;
+	height: 8vh;
+	text-align: center;
+	border-radius: 15px;
+	padding: 1vh;
+	background-color: whitesmoke;
+	box-shadow: 5px 5px 5px #888888;
+	text-shadow: 2px 2px #888888;
+}
+
+@media screen and (min-width: 768px) {
+	.toggle-btn {
+		display: none;
+	}
+}
+
+.search-container {
 	padding: 0;
-	border: 1px solid #CCC;
+	border: 1px solid #ccc;
 	height: 10%;
 	min-height: 30px;
 }
-.listContainer {
+
+.list-container {
 	height: 45%;
 	overflow-y: auto;
-	border: 1px solid #CCC;
+	border: 1px solid #ccc;
 }
+
 .list {
 	padding: 0;
 }
-.listItem {
+
+.list-item {
     list-style-type: none;
     padding: 10px;
-    border-top: 1px solid #CCC;
+    border-top: 1px solid #ccc;
     cursor: pointer;
 }
-.listItem:first-child {
+
+.list-item.selected {
+    background-color:#dedede;
+}
+
+.list-item:first-child {
     border-top: none;
 }
-.itemName {
+
+.item-name {
 	font-weight: bold;
 }
-.selectedDetails {
+
+.selected-details {
 	height: 45%;
 	overflow-y: auto;
 	padding: 15px;
-	border: 1px solid #CCC;
+	border: 1px solid #ccc;
 }
+
 html, body, #map-canvas {
 	height: 100%;
 	margin: 0;
 	padding: 0;
 }
+
 input {
 	width: 100%;
 	height: 100%;
 	font-size: 130%;
 }
-.streetViewDiv {
+
+.street-view-div {
 	padding-top: 5px;
 }
-.itemWiki {
+
+.item-wiki {
 	margin-top: 5px;
 }
-.wikiHeading {
+
+.wiki-heading {
 	text-decoration: underline;
 	margin-top: 5px;
 	margin-bottom: 0;
 }
-.wikiList {
+
+.wiki-list {
     padding-left: 0;
     margin-bottom: 0;
 }
-.wikiArticle {
+
+.wiki-article {
 	list-style-type: none;
 }
-.wikiErrorMessage {
+
+.wiki-error-message {
 	font-style: italic;
 }
+
 .infowindow {
 	width: 125px;
 	font-weight: bold;
